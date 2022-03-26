@@ -1,4 +1,4 @@
-import { IAnyModelType, IMSTArray, types } from "mobx-state-tree";
+import { cast, IAnyModelType, IMSTArray, types } from "mobx-state-tree";
 import { Product } from "../models/Product";
 import { ProductStore } from "./ProductStore";
 
@@ -13,7 +13,7 @@ const OrderStore = types.model('OrderStore', {
         self.items.push(product)
     },
     finalizePurchase: () => {
-        self.items = []
+        self.items = cast([])
     }
 })).views(self => ({
     getTotals(): any {
