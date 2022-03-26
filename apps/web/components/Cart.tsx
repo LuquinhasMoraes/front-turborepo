@@ -10,6 +10,7 @@ import { getSnapshot } from 'mobx-state-tree'
 import {calcularPrecoPrazo, consultarCep, rastrearEncomendas} from 'correios-brasil';
 import { useEffect } from "react"
 import { parseNumberToCurrencyString } from "../helper/currencies"
+import ItemOrder from "./ItemOrder"
 
 
 function Cart({ store }) {
@@ -46,8 +47,6 @@ function Cart({ store }) {
 
     const onHandleFinalize = () => {
         order.finalizePurchase()
-        let element = document.querySelector('.full-cart')
-        element.setAttribute("style", "display: none");
     }
 
     return (
@@ -55,14 +54,9 @@ function Cart({ store }) {
 
 
                 <Row style={{padding: 10}}>
-                    <Col xs={11}>
+                    <Col xs={12}>
                         <h1>
                             <FaShoppingCart style={{color: '#60A12D'}} /> Carrinho 
-                        </h1>
-                    </Col>
-                    <Col xs={1}>
-                        <h1>
-                            <MdClose />
                         </h1>
                     </Col>
                 </Row>
@@ -78,28 +72,7 @@ function Cart({ store }) {
                     </Form>
                     
                     <section style={{minHeight: '50vh', maxHeight: '50vh', overflowY: 'scroll', overflowX: 'hidden'}}>
-                        {
-                            order.items.map((o: Product, index: number) => {
-                                return (
-                                    <Row className="mt-3" key={index}>
-                                        <Col md={12} className="d-flex">
-                                            {/* <img src={o.img} alt="" style={{width: 200, height: 250, background: 'cover'}} /> */}
-                                            <div style={{ width: 270, height: 150, background: `url(${o.img})`, backgroundSize: 'cover', backgroundPosition: 'center center'}}></div>
-                                            <div style={{width: '100%', padding: 20, background: '#eee', position: 'relative'}}>
-                                                <h3>{o.title}</h3>
-                                                <span>{o.description}</span>
-
-                                                <div style={{position: 'absolute', bottom: 15, right: 15}}>
-                                                    <Button>+</Button>
-                                                    <span>1</span>
-                                                    <Button>+</Button>
-                                                </div>
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                )
-                            })
-                        }
+                        { <ItemOrder order={order} /> }
                     </section>
 
 

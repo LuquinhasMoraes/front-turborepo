@@ -9,9 +9,15 @@ const FooterCart = ({store}) => {
     
   const [modalShow, setModalShow] = useState(false);
     const { currentView } = store
+    const { order } = currentView.cart
 
     const onHandleClickFooterCart = () => {
         setModalShow(true)
+    }
+
+    const onHandleFinalize = (): void => {
+        order.finalizePurchase()
+        setModalShow(false)
     }
     return (
         <>
@@ -20,19 +26,40 @@ const FooterCart = ({store}) => {
                 style={{width: '100%'}}
                 onHide={() => setModalShow(false)}
                 size="xl"
-                centered
-            >
+                centered>
                 <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    <FaShoppingCart style={{color: '#60A12D'}} /> Carrinho 
-                </Modal.Title>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        <FaShoppingCart style={{color: '#60A12D'}} /> Carrinho 
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <ItemOrder order={currentView.cart.order} />
+                    <ItemOrder order={order} />
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button >Close</Button>
-                </Modal.Footer>
+                <Container className="d-grid gap-2 pb-2" >
+                    <Row className="d-flex">
+                        <hr />
+                        <Col>
+                            <h5>subtotal</h5>
+                            <h3>{parseNumberToCurrencyString(order.getSubtotals())}</h3>
+                        </Col>
+                        <Col>
+                            <h5>total</h5>
+                            <h3>{parseNumberToCurrencyString(order.getTotals())}</h3>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={3}>
+                            <h5>frete</h5>
+                            <h3>{parseNumberToCurrencyString(order.frete)}</h3>
+                        </Col>
+                    </Row>
+
+                    <Button variant="secondary" size="lg" onClick={() => onHandleFinalize()}>
+                        FINALIZAR COMPRA
+                    </Button>
+                </Container>
+                
+            
             </Modal>
 
             <div style={{
@@ -61,4 +88,6 @@ const FooterCart = ({store}) => {
 }
 
 export default observer(FooterCart)
+
+
 
