@@ -53,7 +53,7 @@ export default function Web(props: any) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const store = initializeStore()
   const view = ShoppingPageStore.create()
   store.setCurrentView(view)
