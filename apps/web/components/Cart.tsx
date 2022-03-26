@@ -74,9 +74,10 @@ function Cart({ store }) {
                     <section style={{minHeight: '50vh', maxHeight: '50vh', overflowY: 'scroll', overflowX: 'hidden'}}>
                         { <ItemOrder order={order} /> }
                     </section>
+                    
+                    
 
-
-                    <div style={{position: 'absolute', bottom: 20, width: '100%', paddingRight: '60px'}}>
+                    {/* <div style={{position: 'absolute', bottom: 20, width: '100%', paddingRight: '60px'}}>
                         <Row style={{padding: 10}}>
                             <hr />
                             <Col md={3}>
@@ -96,8 +97,32 @@ function Cart({ store }) {
                                 FINALIZAR COMPRA
                             </Button>
                         </div>
-                    </div>
+                    </div> */}
                 </Card.Body>
+                <Card.Footer className="d-grid gap-2 pb-4" >
+                    <Row className="d-flex">
+                        <hr />
+                        <Col>
+                            <h5>subtotal</h5>
+                            <h3>{parseNumberToCurrencyString(order.getSubtotals())}</h3>
+                        </Col>
+                        <Col>
+                            <h5>total</h5>
+                            <h3>{parseNumberToCurrencyString(order.getTotals())}</h3>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={12}>
+                            <h5>frete</h5>
+                            <h3>{parseNumberToCurrencyString(order.frete)}</h3>
+                        </Col>
+                    </Row>
+
+                    <Button variant="secondary" size="lg" onClick={() => onHandleFinalize()}>
+                        FINALIZAR COMPRA
+                    </Button>
+                </Card.Footer>
+            
             </Card>
         </div>
     )
