@@ -27,7 +27,7 @@ const FooterCart = ({store}) => {
                     <FaShoppingCart style={{color: '#60A12D'}} /> Carrinho 
                 </Modal.Title>
                 </Modal.Header>
-                <Modal.Body scrollable={true}>
+                <Modal.Body>
                     <ItemOrder order={currentView.cart.order} />
                 </Modal.Body>
                 <Modal.Footer>
