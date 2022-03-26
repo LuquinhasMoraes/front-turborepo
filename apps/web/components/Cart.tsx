@@ -37,12 +37,12 @@ function Cart({ store }) {
     //     console.log(response);
     //   });
 
-    useEffect(async () => {
+    // useEffect(async () => {
         // const res = await fetch('https://viacep.com.br/ws/11441080/json/', {
         //     method: 'GET'
         // })
         // console.log(res);
-    })
+    // })
 
     const onHandleFinalize = () => {
         order.finalizePurchase()
