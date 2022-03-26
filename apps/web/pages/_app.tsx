@@ -1,4 +1,4 @@
-import '../../../packages/ui/dist/style.scss';
+import 'ui/dist/style.scss';
 function MyApp({ Component, pageProps }) {
     return <Component {...pageProps} />
 }

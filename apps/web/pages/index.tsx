@@ -21,7 +21,7 @@ export default function Web(props: any) {
             <Col md={8}>
               <header style={{background: 'url(./bg.jpg)', height: 153, width: '100%', color: 'white', alignItems: 'center'}}>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.7)', width: '100%', height: '100%'}}>
-                  <h1 style={{textAlign: 'center'}}>Huia - Teste Desenvolvimento Front-End</h1>
+                  <h1 style={{textAlign: 'center'}}>Desenvolvimento Front-End</h1>
                 </div>
               </header>
               <main>
@@ -43,12 +43,8 @@ export default function Web(props: any) {
             </Col>
           </Row>
         </Container>
-
         <FooterCart store={store} />
-      </section>
-      <div className="full-cart">
-        <Cart store={store}/>                  
-      </div>          
+      </section>         
       </ThemeProvider>
   );
 }
