@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# front-turborepo
-=======
 # Turborepo starter with NPM
 
 This is an official starter turborepo.
