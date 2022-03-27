@@ -71,8 +71,8 @@ const OrderStore = types.model('OrderStore', {
                 diametro: diametro, 
                 cep: self.frete.cep
             }
-
-            yield fetch('http://localhost:3000/api/frete', {
+            
+            yield fetch(process.env.NEXT_PUBLIC_BASE_URL + 'api/frete', {
                 method: 'POST',
                 body: JSON.stringify(body)
             }).then(res => res.json()).then(j => {
