@@ -3,3 +3,4 @@ Melhorias
 - Tamanho da fonte dos valores no carrinho (Pode haver estouros dependendo do tamanho do valor)
 - Armazenar imagens em algum serviço cloud (Amazon AWS, Cloud Storage, etc)
 - Semantic Tags
+- Refatorar

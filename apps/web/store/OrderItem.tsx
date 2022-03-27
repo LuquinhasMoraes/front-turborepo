@@ -9,6 +9,7 @@ export const OrderItemStore = types.model('OrderItemStore', {
     weight: types.optional(types.number, 0),
     length: types.optional(types.number, 0),
     height: types.optional(types.number, 0),
+    width: types.optional(types.number, 0),
     diameter: types.optional(types.number, 0),
     rating: types.optional(types.number, 0),
     qtd: types.optional(types.number, 1)

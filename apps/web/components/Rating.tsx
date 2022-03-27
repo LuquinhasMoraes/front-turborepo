@@ -20,8 +20,8 @@ export const Rating = ({rating}) => {
         <section>
             {
                 arrRating.map((r: number, index: number) => index + 1 <= rating 
-                    ? <FaStar onClick={ratingConfig.onHandleClick} style={ratingConfig.style} /> 
-                    : <FaRegStar onClick={ratingConfig.onHandleClick} style={ratingConfig.style} />)
+                    ? <FaStar key={index} onClick={ratingConfig.onHandleClick} style={ratingConfig.style} /> 
+                    : <FaRegStar key={index} onClick={ratingConfig.onHandleClick} style={ratingConfig.style} />)
             }
         </section>
     )

@@ -14,7 +14,7 @@ const ProductCard = ({store, data}) => {
             <Card.Body className='card-body'>
                 <Card.Title>{data.title}</Card.Title>
                 <Card.Text>
-                    {data.description}
+                    {data.description }
                 </Card.Text>
                 
                 <Row>

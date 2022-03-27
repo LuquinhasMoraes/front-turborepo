@@ -4,6 +4,7 @@ import { parseNumberToCurrencyString } from "../helper/currencies";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import ItemOrder from "./ItemOrder";
+import { Input } from "./Input";
 
 const FooterCart = ({store}) => {
     
@@ -33,6 +34,7 @@ const FooterCart = ({store}) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <Input order={order} />
                     <ItemOrder order={order} />
                 </Modal.Body>
                 <Container className="d-grid gap-2 pb-2" >
@@ -50,7 +52,7 @@ const FooterCart = ({store}) => {
                     <Row>
                         <Col md={3}>
                             <h5>frete</h5>
-                            <h3>{parseNumberToCurrencyString(order.frete)}</h3>
+                            <h3>{parseNumberToCurrencyString(order.frete.value)}</h3>
                         </Col>
                     </Row>
 

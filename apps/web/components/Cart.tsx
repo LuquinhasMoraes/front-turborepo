@@ -11,6 +11,7 @@ import {calcularPrecoPrazo, consultarCep, rastrearEncomendas} from 'correios-bra
 import { useEffect } from "react"
 import { parseNumberToCurrencyString } from "../helper/currencies"
 import ItemOrder from "./ItemOrder"
+// const frete = require('frete');
 
 
 function Cart({ store }) {
