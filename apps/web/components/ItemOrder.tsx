@@ -33,7 +33,7 @@ function ItemOrder({ order }) {
                         <Col md={12} className="d-flex">
                             <div style={{ width: 270, height: 150, background: `url(${o.img})`, backgroundSize: 'cover', backgroundPosition: 'center center'}}></div>
                             <div style={{width: '100%', padding: 20, background: '#eee', position: 'relative'}}>
-                                <h3>{o.title} {o.width}</h3>
+                                <h3>{o.title}</h3>
                                 <span>{o.description}</span>
 
                                 <div style={{position: 'absolute', bottom: 15, right: 15, background: '#60A12D', color: 'white'}}>

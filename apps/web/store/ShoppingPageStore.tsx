@@ -11,7 +11,7 @@ export const ShoppingPageStore = types
 }).actions(self => ({
     fetchProducts: flow( function* () {
         try {
-            const res = yield fetch(`https://mocki.io/v1/ccbff84c-8de9-4147-8eff-09c211026aa0`)
+            const res = yield fetch(`https://mocki.io/v1/d42b230d-0cb0-470b-a1db-ae7524425f26`)
             self.products = yield res.json()
         } catch (error) {
             console.error('Error when fetch api', error)
