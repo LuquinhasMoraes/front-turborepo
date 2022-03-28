@@ -30,17 +30,16 @@ const OrderStore = types.model('OrderStore', {
     frete: types.optional(FreteStore, {}),
 }).actions(self => ({
     add: (product: IAnyModelType) => {
-        console.log(product);
-        
         self.items.push(product)
-        console.log(getSnapshot(self.items));
-        
+        // self.calculateCEP()
     },
     finalizePurchase: () => {
         self.items = cast([])
         self.frete.resetFrete()
     },
     calculateCEP: flow (function* () {
+        console.log('calculando cep');
+        
         if(self.items.length > 0 && self.frete.cep.length > 0) {
             let frete: any = null
 

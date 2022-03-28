@@ -14,7 +14,7 @@ const ProductCard = ({store, data}) => {
             <Card.Body className='card-body'>
                 <Card.Title>{data.title}</Card.Title>
                 <Card.Text>
-                    {data.description }
+                    {data.description}
                 </Card.Text>
                 
                 <Row>
@@ -29,7 +29,7 @@ const ProductCard = ({store, data}) => {
                 </Row>
             </Card.Body>
             <div className="d-grid gap-2">
-                <Button variant="primary" size="lg" disabled={cart.order.checkIsAlready(data.id)} onClick={() => cart.order.add(data)}>
+                <Button variant="primary" size="lg" disabled={cart.order.checkIsAlready(data.id)} onClick={() =>  { cart.order.add(data); cart.order.calculateCEP() }}>
                     ADICIONAR AO CARRINHO
                 </Button>
             </div>

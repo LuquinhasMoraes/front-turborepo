@@ -5,6 +5,7 @@ import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import ItemOrder from "./ItemOrder";
 import { Input } from "./Input";
+import Totals from "./Totals";
 
 const FooterCart = ({store}) => {
     
@@ -38,24 +39,7 @@ const FooterCart = ({store}) => {
                     <ItemOrder order={order} />
                 </Modal.Body>
                 <Container className="d-grid gap-2 pb-2" >
-                    <Row className="d-flex">
-                        <hr />
-                        <Col>
-                            <h5>subtotal</h5>
-                            <h3>{parseNumberToCurrencyString(order.getSubtotals())}</h3>
-                        </Col>
-                        <Col>
-                            <h5>total</h5>
-                            <h3>{parseNumberToCurrencyString(order.getTotals())}</h3>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md={3}>
-                            <h5>frete</h5>
-                            <h3>{parseNumberToCurrencyString(order.frete.value)}</h3>
-                        </Col>
-                    </Row>
-
+                    <Totals order={order} />
                     <Button variant="secondary" size="lg" onClick={() => onHandleFinalize()}>
                         FINALIZAR COMPRA
                     </Button>
