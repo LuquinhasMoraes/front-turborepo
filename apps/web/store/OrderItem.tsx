@@ -1,4 +1,4 @@
-import { flow, types } from "mobx-state-tree";
+import { destroy, flow, getParent, types } from "mobx-state-tree";
 
 export const OrderItemStore = types.model('OrderItemStore', {
     id: types.optional(types.number, 0),
@@ -14,6 +14,10 @@ export const OrderItemStore = types.model('OrderItemStore', {
     rating: types.optional(types.number, 0),
     qtd: types.optional(types.number, 1)
 }).actions(self => ({
+    delete: (item) => {
+        const parent: any = getParent
+        parent(self, 2).deleteOrderItem(self)
+    },
     add: () => {
         try {
             self.qtd += 1

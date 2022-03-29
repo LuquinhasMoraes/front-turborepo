@@ -12,6 +12,19 @@ export interface Product {
     rating: number;
 }
 
+export const ProductMock: Product = {
+  id: 1,
+  img: '',
+  title: 'Product', 
+  description: 'Description',
+  diameter: 2,
+  height: 1,
+  length: 11,
+  price: 111.00,
+  rating: 5,
+  weight: 2,
+  width: 16
+}
 
 export const Products: Array<Product> = [
     {

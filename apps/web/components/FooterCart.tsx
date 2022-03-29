@@ -48,15 +48,7 @@ const FooterCart = ({store}) => {
             
             </Modal>
 
-            <div style={{
-                width: '100%',
-                height: '85px',
-                background: 'white',
-                position: 'fixed',
-                bottom: 0,
-                boxShadow: '0 3px 10px rgb(0 0 0 / 0.4)',
-                display: 'none'
-            }} className="d-block d-md-none" onClick={() => onHandleClickFooterCart()}>
+            <div className="d-block d-md-none footer-cart" onClick={() => onHandleClickFooterCart()}>
                 <Container fluid>
                 <Row style={{padding: 15}}>
                     <Col style={{display: 'flex', justifyContent: 'flex-start'}} >

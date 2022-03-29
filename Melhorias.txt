@@ -4,3 +4,4 @@ Melhorias
 - Armazenar imagens em algum serviço cloud (Amazon AWS, Cloud Storage, etc)
 - Semantic Tags
 - Refatorar
+- Loadings

@@ -1,4 +1,4 @@
-import { cast, flow, IAnyModelType, IMSTArray, types, getSnapshot } from "mobx-state-tree";
+import { cast, flow, IAnyModelType, IMSTArray, types, getSnapshot, destroy, getRoot } from "mobx-state-tree";
 import { Product } from "../models/Product";
 import { OrderItemStore } from "./OrderItem";
 import { ProductStore } from "./ProductStore";
@@ -8,7 +8,7 @@ const FreteStore = types.model('FreteStore', {
     name: types.optional(types.string, ''),
     value: types.optional(types.number, 0),
 }).actions(self => ({
-    setCEP: (cep: string) => {
+    setCEP: (cep) => {
         self.cep = cep
     },
     setFrete: (frete) => {
@@ -16,7 +16,6 @@ const FreteStore = types.model('FreteStore', {
         self.value = parseFloat(frete.valorSemAdicionais.replace(/,/g, '.'))
     },
     resetFrete: () => {
-        self.cep = ''
         self.name = ''
         self.value = 0
     }
@@ -29,18 +28,23 @@ const OrderStore = types.model('OrderStore', {
     subtotal: types.optional(types.number, 0),
     frete: types.optional(FreteStore, {}),
 }).actions(self => ({
-    add: (product: IAnyModelType) => {
-        self.items.push(product)
+    add: (product) => {
+        self.items.push(getSnapshot(product))
         // self.calculateCEP()
     },
     finalizePurchase: () => {
         self.items = cast([])
         self.frete.resetFrete()
     },
+    deleteOrderItem: (item) => {
+        destroy(item)
+    },
     calculateCEP: flow (function* () {
         console.log('calculando cep');
         
         if(self.items.length > 0 && self.frete.cep.length > 0) {
+            const store: any = getRoot(self)
+            store.setLoading(true)
             let frete: any = null
 
             let peso = 0
@@ -76,9 +80,11 @@ const OrderStore = types.model('OrderStore', {
                 body: JSON.stringify(body)
             }).then(res => res.json()).then(j => {
                 frete = j[0]
+                store.setLoading(false)
             })
             self.frete.setFrete(frete)
-        }
+        } else 
+            self.frete.resetFrete()
     }),
     
 })).views(self => ({

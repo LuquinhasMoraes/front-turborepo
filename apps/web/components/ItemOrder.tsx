@@ -27,31 +27,31 @@ function ItemOrder({ order }) {
     const items = order.getOrderItems()
     return (
             items.length < 1 ? <Empty /> :
-            items.map((o, index: number) => {
+            items.map((item, index: number) => {
                 return (
                     <Row className="mt-3" key={index}>
                         <Col md={12} className="d-flex">
-                            <div style={{ width: 270, height: 150, background: `url(${o.img})`, backgroundSize: 'cover', backgroundPosition: 'center center'}}></div>
+                            <div style={{ width: 270, height: 150, background: `url(${item.img})`, backgroundSize: 'cover', backgroundPosition: 'center center'}}></div>
                             <div style={{width: '100%', padding: 20, background: '#eee', position: 'relative'}}>
-                                <h3>{o.title}</h3>
-                                <span>{o.description}</span>
+                                <h3>{item.title}</h3>
+                                <span>{item.description}</span>
 
                                 <div style={{position: 'absolute', bottom: 15, right: 15, background: '#60A12D', color: 'white'}}>
                                     <Button onClick={() => {
-                                        o.remove()
+                                        item.qtd > 1 ? item.remove() : item.delete()
                                         order.calculateCEP()
                                     }} size="sm"> 
                                         {
-                                            o.qtd > 1 
+                                            item.qtd > 1 
                                             ? 
                                             <FaMinus size={10} />
                                             :
                                             <FaTrash size={12} />
                                         }
                                     </Button>
-                                    <span>{o.qtd}</span>
+                                    <span>{item.qtd}</span>
                                     <Button onClick={() => {
-                                        o.add()
+                                        item.add()
                                         order.calculateCEP()
                                     }} size="sm"><FaPlus size={10} /></Button>
                                 </div>

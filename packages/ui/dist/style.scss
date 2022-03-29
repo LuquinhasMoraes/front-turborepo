@@ -14,6 +14,27 @@ body {
     background-color: #eee !important;
 }
 
+.header-app {
+    background: url('/apps/web/bg.jpg'); 
+    height: 153px;
+    width: 100%; 
+    color: white; 
+    align-items: center
+}
+
+.header-overlay {
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    background: rgba(0,0,0,0.7); 
+    width: 100%; 
+    height: 100%;
+
+    h1 {
+        text-align: center;
+    }
+}
+
 .btn-primary {
     color: white;
     border-radius: 0
@@ -85,8 +106,39 @@ h5 {
     border: none !important;
 }
 
+.loading {
+    pointer-events: all;
+    z-index: 99999;
+    border: none;
+    width: 100%;
+    height: 100%;
+    cursor: wait;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    
+
+    h5 {
+        margin-top: 350px;
+        text-align: center;
+        color: #665
+    }
+    
+}
+
 @media (max-width: 767px)
 {
+    .footer-cart {
+        width: 100%;
+        height: 85px;
+        background: white;
+        position: fixed;
+        bottom: 0;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
+        display: none
+    }
+    .row-content {
+        padding-bottom: 115px !important;
+    }
     .cart-mobile {
         display: block;
     }
@@ -104,17 +156,5 @@ h5 {
     }
     .card {
         border: none;
-    }
-}
-@media (min-width: 768px)
-{
-    .full-cart {
-        display: none;
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100vh;
-        z-index: 9;
     }
 }

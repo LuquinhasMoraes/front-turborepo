@@ -13,6 +13,7 @@ import { parseNumberToCurrencyString } from "../helper/currencies"
 import ItemOrder from "./ItemOrder"
 import { Input } from "./Input"
 import Totals from "./Totals"
+import Loading from "./Loading"
 // const frete = require('frete');
 
 
@@ -32,15 +33,14 @@ function Cart({ store }) {
                     </h1>
                 </Col>
             </Row>
-            <Card style={{minHeight: '93vh'}}>
+            <Card style={{minHeight: '88vh'}}>
+                <Loading isShow={store.isLoading} />
                 <Card.Body style={{position: 'relative'}}>
                     <Card.Title>Calcular Frete</Card.Title>
                     <Input order={order} />
-                    
                     <section style={{minHeight: '50vh', maxHeight: '50vh', overflowY: 'scroll', overflowX: 'hidden'}}>
                         { <ItemOrder order={order} /> }
                     </section>
-
                 </Card.Body>
                 <Card.Footer className="d-grid gap-2 pb-4" >
                     <Totals order={order} />
