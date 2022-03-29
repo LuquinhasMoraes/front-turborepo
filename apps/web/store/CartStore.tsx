@@ -29,8 +29,21 @@ const OrderStore = types.model('OrderStore', {
     frete: types.optional(FreteStore, {}),
 }).actions(self => ({
     add: (product) => {
-        self.items.push(getSnapshot(product))
-        // self.calculateCEP()
+        const item: any = {
+            id: product.id,
+            title: product.title,
+            img: product.img,
+            description: product.description,
+            price: product.price,
+            weight: product.weight,
+            length: product.length,
+            height: product.height,
+            width: product.width,
+            diameter: product.diameter,
+            rating: product.rating,
+            qtd: 1
+        }
+        self.items.push(item)
     },
     finalizePurchase: () => {
         self.items = cast([])
@@ -39,52 +52,56 @@ const OrderStore = types.model('OrderStore', {
     deleteOrderItem: (item) => {
         destroy(item)
     },
-    calculateCEP: flow (function* () {
-        console.log('calculando cep');
-        
-        if(self.items.length > 0 && self.frete.cep.length > 0) {
-            const store: any = getRoot(self)
-            store.setLoading(true)
-            let frete: any = null
-
-            let peso = 0
-            let comprimento = 0
-            let altura = 0
-            let largura = 0
-            let diametro = 0
-
-            self.items.filter(item => item.qtd > 0).forEach(item => {
-                peso += item.weight * item.qtd
-                comprimento += item.length * item.qtd
-                altura += item.height * item.qtd
-                largura += item.width * item.qtd
-                diametro += item.diameter * item.qtd
-            })
-
-            if(peso === 0 || comprimento === 0 || altura === 0 || largura === 0 || diametro === 0) {
+    calculateFreight: flow (function* () {
+        const store: any = getRoot(self)
+        try {
+            if(self.items.length > 0 && self.frete.cep.length > 0) {
+                store.setLoading(true)
+                let frete: any = null
+    
+                let peso = 0
+                let comprimento = 0
+                let altura = 0
+                let largura = 0
+                let diametro = 0
+    
+                self.items.filter(item => item.qtd > 0).forEach(item => {
+                    peso += item.weight * item.qtd
+                    comprimento += item.length * item.qtd
+                    altura += item.height * item.qtd
+                    largura += item.width * item.qtd
+                    diametro += item.diameter * item.qtd
+                })
+    
+                if(peso === 0 || comprimento === 0 || altura === 0 || largura === 0 || diametro === 0) {
+                    self.frete.resetFrete()
+                    return
+                }
+    
+                const body: any = {
+                    peso: peso, 
+                    comprimento: comprimento, 
+                    altura: altura, 
+                    largura: largura, 
+                    diametro: diametro, 
+                    cep: self.frete.cep
+                }
+                
+                yield fetch(process.env.NEXT_PUBLIC_BASE_URL + 'api/frete', {
+                    method: 'POST',
+                    body: JSON.stringify(body)
+                }).then(res => res.json()).then(j => {
+                    frete = j[0]
+                    store.setLoading(false)
+                    self.frete.setFrete(frete)
+                })
+            } else 
                 self.frete.resetFrete()
-                return
-            }
-
-            const body: any = {
-                peso: peso, 
-                comprimento: comprimento, 
-                altura: altura, 
-                largura: largura, 
-                diametro: diametro, 
-                cep: self.frete.cep
-            }
-            
-            yield fetch(process.env.NEXT_PUBLIC_BASE_URL + 'api/frete', {
-                method: 'POST',
-                body: JSON.stringify(body)
-            }).then(res => res.json()).then(j => {
-                frete = j[0]
-                store.setLoading(false)
-            })
-            self.frete.setFrete(frete)
-        } else 
-            self.frete.resetFrete()
+        } catch (error) {
+            console.error('error when calculte freight')
+            store.setLoading(false)
+        }
+        
     }),
     
 })).views(self => ({

@@ -29,7 +29,7 @@ const ProductCard = ({store, data}) => {
                 </Row>
             </Card.Body>
             <div className="d-grid gap-2">
-                <Button variant="primary" size="lg" disabled={cart.order.checkIsAlready(data.id)} onClick={() =>  { cart.order.add(data); cart.order.calculateCEP() }}>
+                <Button variant="primary" size="lg" disabled={cart.order.checkIsAlready(data.id)} onClick={() =>  { cart.order.add(data); cart.order.calculateFreight() }}>
                     ADICIONAR AO CARRINHO
                 </Button>
             </div>

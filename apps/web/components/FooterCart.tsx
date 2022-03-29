@@ -6,6 +6,7 @@ import { useState } from "react";
 import ItemOrder from "./ItemOrder";
 import { Input } from "./Input";
 import Totals from "./Totals";
+import Loading from "./Loading";
 
 const FooterCart = ({store}) => {
     
@@ -29,6 +30,7 @@ const FooterCart = ({store}) => {
                 onHide={() => setModalShow(false)}
                 size="xl"
                 centered>
+                <Loading isShow={store.isLoading} />
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         <FaShoppingCart style={{color: '#60A12D'}} /> Carrinho 

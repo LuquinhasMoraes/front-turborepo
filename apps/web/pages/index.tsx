@@ -1,8 +1,7 @@
 import { getSnapshot } from "mobx-state-tree";
 import { useState } from "react";
 import { Button, Card, Col, Container, Modal, Row, ThemeProvider } from "react-bootstrap";
-import useSWR from "swr";
-import Cart from '../components/Cart';
+import Cart from 'ui/components/Cart';
 import FooterCart from "../components/FooterCart";
 import { Header } from "../components/Header";
 import ProductCard from '../components/ProductCard';

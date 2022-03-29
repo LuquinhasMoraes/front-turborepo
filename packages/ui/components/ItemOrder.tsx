@@ -1,14 +1,10 @@
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap"
-import { FaMinus, FaPlus, FaShoppingCart, FaTrash, FaTrashAlt } from "react-icons/fa"
+import { Button, Col, Container, Row } from "react-bootstrap"
+import { FaMinus, FaPlus, FaTrash, FaTrashAlt } from "react-icons/fa"
 import { observer } from "mobx-react-lite"
-import { getSnapshot } from 'mobx-state-tree'
-import {calcularPrecoPrazo, consultarCep, rastrearEncomendas} from 'correios-brasil';
-import { useEffect } from "react"
-import { parseNumberToCurrencyString } from "../helper/currencies"
 
 const Empty = () => {
     return (
-        <Container >
+        <Container>
             <Row>
                 <Col md={12} style={{display: 'flex', justifyContent: 'center', height: 300}}>
                     <img src="/empty.png" width={200} alt="" style={{alignSelf: 'center'}} />
@@ -23,11 +19,11 @@ const Empty = () => {
     )
 }
 
-function ItemOrder({ order }) {
+function ItemOrder({ order }: { order: any }) {
     const items = order.getOrderItems()
     return (
             items.length < 1 ? <Empty /> :
-            items.map((item, index: number) => {
+            items.map((item: any, index: number) => {
                 return (
                     <Row className="mt-3" key={index}>
                         <Col md={12} className="d-flex">

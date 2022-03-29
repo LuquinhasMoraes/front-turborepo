@@ -6,7 +6,7 @@ import { Input } from "./Input"
 import Totals from "./Totals"
 import Loading from "./Loading"
 
-function Cart({ store }) {
+function Cart({ store }: {store: any}) {
 
     const { currentView } = store
     const { order } = currentView.cart
